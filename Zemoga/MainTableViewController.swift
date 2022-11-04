@@ -8,12 +8,14 @@
 import UIKit
 
 struct Posts: Equatable, Codable {
+    let id: Int
     let userId: Int
     let title: String
     let body: String
     var isFavorite: Bool = false
     
     enum CodingKeys: String, CodingKey {
+        case id
         case userId
         case title
         case body
@@ -22,6 +24,7 @@ struct Posts: Equatable, Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
         userId = try container.decode(Int.self, forKey: .userId)
         title = try container.decode(String.self, forKey: .title)
         body = try container.decode(String.self, forKey: .body)
@@ -170,6 +173,12 @@ class MainTableViewController: UITableViewController {
             }
         }.resume()
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Place code you want to be performed when a cell is tapped inside of here, for example:
+        let post = postsArray[indexPath.row]
+        performSegue(withIdentifier: "postDetailSegue", sender: post) // Make sure your identifier makes sense and is preferably something memorable and easily recognisable.
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -205,14 +214,16 @@ class MainTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if let vc = segue.destination as? PostDetailViewController {
+            vc.post = sender as? Posts
+        }
     }
-    */
+
 
 }

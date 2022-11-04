@@ -18,6 +18,9 @@
 		2D611EF02912047000A79B48 /* ZemogaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D611EEF2912047000A79B48 /* ZemogaUITestsLaunchTests.swift */; };
 		2DE8AFA329120AA300A79A55 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA229120AA300A79A55 /* MainTableViewController.swift */; };
 		2DE8AFA5291212DA00A79A55 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA4291212DA00A79A55 /* MainTableViewCell.swift */; };
+		2DE8AFA72914C09200A79A55 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA62914C09200A79A55 /* PostDetailViewController.swift */; };
+		2DE8AFAA2914CFED00A79A55 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA82914CFED00A79A55 /* CommentTableViewCell.swift */; };
+		2DE8AFAB2914CFED00A79A55 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA92914CFED00A79A55 /* CommentTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		2D611EEF2912047000A79B48 /* ZemogaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZemogaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2DE8AFA229120AA300A79A55 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		2DE8AFA4291212DA00A79A55 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		2DE8AFA62914C09200A79A55 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		2DE8AFA82914CFED00A79A55 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		2DE8AFA92914CFED00A79A55 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,9 @@
 				2D611EDA2912046F00A79B48 /* Info.plist */,
 				2DE8AFA229120AA300A79A55 /* MainTableViewController.swift */,
 				2DE8AFA4291212DA00A79A55 /* MainTableViewCell.swift */,
+				2DE8AFA62914C09200A79A55 /* PostDetailViewController.swift */,
+				2DE8AFA82914CFED00A79A55 /* CommentTableViewCell.swift */,
+				2DE8AFA92914CFED00A79A55 /* CommentTableViewCell.xib */,
 			);
 			path = Zemoga;
 			sourceTree = "<group>";
@@ -240,6 +249,7 @@
 				2D611ED92912046F00A79B48 /* LaunchScreen.storyboard in Resources */,
 				2D611ED62912046F00A79B48 /* Assets.xcassets in Resources */,
 				2D611ED42912046800A79B48 /* Main.storyboard in Resources */,
+				2DE8AFAB2914CFED00A79A55 /* CommentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,8 +275,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DE8AFA329120AA300A79A55 /* MainTableViewController.swift in Sources */,
+				2DE8AFA72914C09200A79A55 /* PostDetailViewController.swift in Sources */,
 				2D611ED12912046800A79B48 /* ViewController.swift in Sources */,
 				2D611ECD2912046800A79B48 /* AppDelegate.swift in Sources */,
+				2DE8AFAA2914CFED00A79A55 /* CommentTableViewCell.swift in Sources */,
 				2D611ECF2912046800A79B48 /* SceneDelegate.swift in Sources */,
 				2DE8AFA5291212DA00A79A55 /* MainTableViewCell.swift in Sources */,
 			);
