@@ -1,0 +1,218 @@
+//
+//  MainTableViewController.swift
+//  Zemoga
+//
+//  Created by Juanca on 2022-11-01.
+//
+
+import UIKit
+
+struct Posts: Equatable, Codable {
+    let userId: Int
+    let title: String
+    let body: String
+    var isFavorite: Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+        case userId
+        case title
+        case body
+        case isFavorite
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        userId = try container.decode(Int.self, forKey: .userId)
+        title = try container.decode(String.self, forKey: .title)
+        body = try container.decode(String.self, forKey: .body)
+        isFavorite = try container.decodeIfPresent(Bool.self, forKey: .isFavorite) ?? false
+    }
+}
+
+class MainTableViewController: UITableViewController {
+    
+    private var postsArray = [Posts]()
+    private var loading = true
+
+
+    
+    override func viewDidLoad() {
+        
+
+
+        super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = 30
+        tableView.rowHeight = UITableView.automaticDimension
+        self.refreshControl = UIRefreshControl()
+        
+        getPosts()
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete non fav", style: .plain, target: self, action: #selector(deleteNonFavAction))
+        refreshControl!.attributedTitle = NSAttributedString(string: "Getting all posts")
+        refreshControl!.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+    }
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        if loading {
+            return 1
+        } else {
+            return postsArray.count
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTableViewCell
+        
+        if loading {
+            cell.titleLabel?.text = "Loading ..."
+        } else {
+            let post = postsArray[indexPath.row]
+            cell.titleLabel?.text = post.title
+            
+            if post.isFavorite {
+                cell.isFavorite?.isHidden = false
+            } else {
+                cell.isFavorite?.isHidden = true
+            }
+        }
+        
+
+
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { _, indexPath in
+            self.postsArray.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+        })
+        
+        let post = postsArray[indexPath.row]
+        let favoriteActionTitle = post.isFavorite ? "Unfavorite" : "Favorite"
+        
+        let favoriteAction = UITableViewRowAction(style: .normal, title: favoriteActionTitle, handler: { _, indexPath in
+            self.postsArray[indexPath.row].isFavorite.toggle()
+            self.sortedPostsArray()
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            
+        })
+        
+        favoriteAction.backgroundColor = .systemYellow
+        
+                
+        return [deleteAction, favoriteAction]
+    }
+    
+    // MARK: Delete all rows except marked as fav
+    
+    @objc func deleteNonFavAction() {
+
+        for post in self.postsArray {
+            if !post.isFavorite {
+                if let index = self.postsArray.firstIndex(of: post) {
+                    self.postsArray.remove(at: index)
+                }
+            }
+        }
+
+        self.tableView.reloadData()
+        
+    }
+    
+    // MARK: Sorting array by marked as fav
+    
+    func sortedPostsArray() {
+        
+        postsArray = postsArray.sorted { $0.isFavorite && !$1.isFavorite }
+        self.tableView.reloadData()
+        
+    }
+    
+    // MARK: Pull to refresh
+    
+    @objc func refresh(_ sender: AnyObject) {
+        getPosts()
+        refreshControl!.endRefreshing()
+        self.tableView.reloadData()
+    }
+    
+    // MARK: Networking
+    
+    private func getPosts() {
+        guard let  url = URL(string: "https://jsonplaceholder.typicode.com/posts") else {
+            fatalError("URL guard statement failed")
+        }
+        URLSession.shared.dataTask(with: url) { (data,response,error) in
+            //Handling decoding
+            if let data = data {
+                guard let post = try? JSONDecoder().decode([Posts].self, from:data) else {
+                    fatalError("Error decoding data \(String(describing: error))")
+                }
+                self.postsArray = post
+            }
+            self.loading = false
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }.resume()
+    }
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
