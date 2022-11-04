@@ -38,9 +38,14 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     var post: Posts? = nil
 //    var postID: Int = 0
     private var commentsArray = [Comments]()
+    
     private var loading = true
 
     @IBOutlet weak var tableView: UITableView!
+
+    @IBOutlet weak var postTitle: UILabel!
+    
+    @IBOutlet weak var postDescription: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +55,11 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
+        
+        postTitle.text = post?.title
+        postDescription.text = post?.body
+        
+        
     }
     
     // MARK: - Networking
@@ -67,17 +77,25 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
                 self.commentsArray = comment
             }
             self.loading = false
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }.resume()
     }
     
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentTableViewCell
+        let comment = commentsArray[indexPath.row]
+        cell.titleLabel.text = comment.name
+        cell.descriptionLabel.text = comment.body
         return cell
+    }
+
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Comments"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,7 +105,7 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return commentsArray.count
     }
     
 

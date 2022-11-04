@@ -20,7 +20,6 @@
 		2DE8AFA5291212DA00A79A55 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA4291212DA00A79A55 /* MainTableViewCell.swift */; };
 		2DE8AFA72914C09200A79A55 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA62914C09200A79A55 /* PostDetailViewController.swift */; };
 		2DE8AFAA2914CFED00A79A55 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA82914CFED00A79A55 /* CommentTableViewCell.swift */; };
-		2DE8AFAB2914CFED00A79A55 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA92914CFED00A79A55 /* CommentTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +57,6 @@
 		2DE8AFA4291212DA00A79A55 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		2DE8AFA62914C09200A79A55 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		2DE8AFA82914CFED00A79A55 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
-		2DE8AFA92914CFED00A79A55 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +118,6 @@
 				2DE8AFA4291212DA00A79A55 /* MainTableViewCell.swift */,
 				2DE8AFA62914C09200A79A55 /* PostDetailViewController.swift */,
 				2DE8AFA82914CFED00A79A55 /* CommentTableViewCell.swift */,
-				2DE8AFA92914CFED00A79A55 /* CommentTableViewCell.xib */,
 			);
 			path = Zemoga;
 			sourceTree = "<group>";
@@ -249,7 +246,6 @@
 				2D611ED92912046F00A79B48 /* LaunchScreen.storyboard in Resources */,
 				2D611ED62912046F00A79B48 /* Assets.xcassets in Resources */,
 				2D611ED42912046800A79B48 /* Main.storyboard in Resources */,
-				2DE8AFAB2914CFED00A79A55 /* CommentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
