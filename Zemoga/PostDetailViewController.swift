@@ -7,90 +7,90 @@
 
 import UIKit
 
-struct Comments: Equatable, Codable {
-    let id: Int
-    let postId: Int
-    let name: String
-    let email: String
-    let body: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case postId
-        case name
-        case email
-        case body
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        postId = try container.decode(Int.self, forKey: .postId)
-        name = try container.decode(String.self, forKey: .name)
-        email = try container.decode(String.self, forKey: .email)
-        body = try container.decode(String.self, forKey: .body)
-    }
-}
+//struct Comments: Equatable, Codable {
+//    let id: Int
+//    let postId: Int
+//    let name: String
+//    let email: String
+//    let body: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        case id
+//        case postId
+//        case name
+//        case email
+//        case body
+//    }
+//
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        id = try container.decode(Int.self, forKey: .id)
+//        postId = try container.decode(Int.self, forKey: .postId)
+//        name = try container.decode(String.self, forKey: .name)
+//        email = try container.decode(String.self, forKey: .email)
+//        body = try container.decode(String.self, forKey: .body)
+//    }
+//}
 
-struct Author: Codable {
-    let id: Int
-    let name: String
-    let username: String
-    let email: String
-    let address: Address
-    let phone: String
-    let website: String
-    let company : Company
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case username
-        case email
-        case address = "address"
-        case phone
-        case website
-        case company = "company"
-    }
-}
-
-struct Address : Codable {
-    let street: String
-    let suite: String
-    let city: String
-    let zipcode: String
-    let geo: Geo
-    
-    enum CodingKeys: String, CodingKey {
-        case street
-        case suite
-        case city
-        case zipcode
-        case geo  = "geo"
-    }
-}
-
-struct Geo: Codable {
-    let lat: String
-    let lng: String
-    
-    enum CodingKeys: String, CodingKey {
-        case lat
-        case lng
-    }
-}
-
-struct Company : Codable {
-    let name: String
-    let catchPhrase: String
-    let bs: String
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-        case catchPhrase
-        case bs
-    }
-}
+//struct Author: Codable {
+//    let id: Int
+//    let name: String
+//    let username: String
+//    let email: String
+//    let address: Address
+//    let phone: String
+//    let website: String
+//    let company : Company
+//
+//    enum CodingKeys: String, CodingKey {
+//        case id
+//        case name
+//        case username
+//        case email
+//        case address = "address"
+//        case phone
+//        case website
+//        case company = "company"
+//    }
+//}
+//
+//struct Address : Codable {
+//    let street: String
+//    let suite: String
+//    let city: String
+//    let zipcode: String
+//    let geo: Geo
+//
+//    enum CodingKeys: String, CodingKey {
+//        case street
+//        case suite
+//        case city
+//        case zipcode
+//        case geo  = "geo"
+//    }
+//}
+//
+//struct Geo: Codable {
+//    let lat: String
+//    let lng: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        case lat
+//        case lng
+//    }
+//}
+//
+//struct Company : Codable {
+//    let name: String
+//    let catchPhrase: String
+//    let bs: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        case name
+//        case catchPhrase
+//        case bs
+//    }
+//}
 
 class PostDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -117,10 +117,9 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.postID = post!.id
         getComments(postid: post!.id)
         getAuthor(userid: post!.userId)
-        // Do any additional setup after loading the view.
+        
         tableView.dataSource = self
         tableView.delegate = self
         

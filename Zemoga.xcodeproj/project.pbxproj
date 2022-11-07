@@ -16,6 +16,9 @@
 		2D611EE42912047000A79B48 /* ZemogaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D611EE32912047000A79B48 /* ZemogaTests.swift */; };
 		2D611EEE2912047000A79B48 /* ZemogaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D611EED2912047000A79B48 /* ZemogaUITests.swift */; };
 		2D611EF02912047000A79B48 /* ZemogaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D611EEF2912047000A79B48 /* ZemogaUITestsLaunchTests.swift */; };
+		2DDA3BA22918D9E300E8FDDA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA3BA12918D9E300E8FDDA /* UserModel.swift */; };
+		2DDA3BA42918DAAA00E8FDDA /* CommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA3BA32918DAAA00E8FDDA /* CommentsModel.swift */; };
+		2DDA3BA62918DAE500E8FDDA /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA3BA52918DAE500E8FDDA /* PostsModel.swift */; };
 		2DE8AFA329120AA300A79A55 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA229120AA300A79A55 /* MainTableViewController.swift */; };
 		2DE8AFA5291212DA00A79A55 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA4291212DA00A79A55 /* MainTableViewCell.swift */; };
 		2DE8AFA72914C09200A79A55 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8AFA62914C09200A79A55 /* PostDetailViewController.swift */; };
@@ -53,6 +56,9 @@
 		2D611EE92912047000A79B48 /* ZemogaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZemogaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D611EED2912047000A79B48 /* ZemogaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZemogaUITests.swift; sourceTree = "<group>"; };
 		2D611EEF2912047000A79B48 /* ZemogaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZemogaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2DDA3BA12918D9E300E8FDDA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		2DDA3BA32918DAAA00E8FDDA /* CommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
+		2DDA3BA52918DAE500E8FDDA /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
 		2DE8AFA229120AA300A79A55 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		2DE8AFA4291212DA00A79A55 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		2DE8AFA62914C09200A79A55 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +149,9 @@
 		2DDA3BA02918D95400E8FDDA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2DDA3BA12918D9E300E8FDDA /* UserModel.swift */,
+				2DDA3BA32918DAAA00E8FDDA /* CommentsModel.swift */,
+				2DDA3BA52918DAE500E8FDDA /* PostsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,7 +288,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DE8AFA329120AA300A79A55 /* MainTableViewController.swift in Sources */,
+				2DDA3BA42918DAAA00E8FDDA /* CommentsModel.swift in Sources */,
 				2DE8AFA72914C09200A79A55 /* PostDetailViewController.swift in Sources */,
+				2DDA3BA62918DAE500E8FDDA /* PostsModel.swift in Sources */,
+				2DDA3BA22918D9E300E8FDDA /* UserModel.swift in Sources */,
 				2D611ED12912046800A79B48 /* ViewController.swift in Sources */,
 				2D611ECD2912046800A79B48 /* AppDelegate.swift in Sources */,
 				2DE8AFAA2914CFED00A79A55 /* CommentTableViewCell.swift in Sources */,

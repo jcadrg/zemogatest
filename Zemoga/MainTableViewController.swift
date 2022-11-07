@@ -7,30 +7,6 @@
 
 import UIKit
 
-struct Posts: Equatable, Codable {
-    let id: Int
-    let userId: Int
-    let title: String
-    let body: String
-    var isFavorite: Bool = false
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case userId
-        case title
-        case body
-        case isFavorite
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        userId = try container.decode(Int.self, forKey: .userId)
-        title = try container.decode(String.self, forKey: .title)
-        body = try container.decode(String.self, forKey: .body)
-        isFavorite = try container.decodeIfPresent(Bool.self, forKey: .isFavorite) ?? false
-    }
-}
 
 class MainTableViewController: UITableViewController {
     
@@ -179,40 +155,7 @@ class MainTableViewController: UITableViewController {
         let post = postsArray[indexPath.row]
         performSegue(withIdentifier: "postDetailSegue", sender: post) // Make sure your identifier makes sense and is preferably something memorable and easily recognisable.
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     // MARK: - Navigation
 
