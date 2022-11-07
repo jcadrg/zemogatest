@@ -12,7 +12,7 @@ struct Comments: Equatable, Codable {
     let postId: Int
     let name: String
     let email: String
-    var body: String
+    let body: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -32,26 +32,94 @@ struct Comments: Equatable, Codable {
     }
 }
 
+struct Author: Codable {
+    let id: Int
+    let name: String
+    let username: String
+    let email: String
+    let address: Address
+    let phone: String
+    let website: String
+    let company : Company
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case username
+        case email
+        case address = "address"
+        case phone
+        case website
+        case company = "company"
+    }
+}
+
+struct Address : Codable {
+    let street: String
+    let suite: String
+    let city: String
+    let zipcode: String
+    let geo: Geo
+    
+    enum CodingKeys: String, CodingKey {
+        case street
+        case suite
+        case city
+        case zipcode
+        case geo  = "geo"
+    }
+}
+
+struct Geo: Codable {
+    let lat: String
+    let lng: String
+    
+    enum CodingKeys: String, CodingKey {
+        case lat
+        case lng
+    }
+}
+
+struct Company : Codable {
+    let name: String
+    let catchPhrase: String
+    let bs: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case catchPhrase
+        case bs
+    }
+}
+
 class PostDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
     var post: Posts? = nil
 //    var postID: Int = 0
     private var commentsArray = [Comments]()
+    private var authorsArray = [Author]()
     
     private var loading = true
 
     @IBOutlet weak var tableView: UITableView!
 
     @IBOutlet weak var postTitle: UILabel!
-    
     @IBOutlet weak var postDescription: UILabel!
+    
+    @IBOutlet weak var userRealName: UILabel!
+    @IBOutlet weak var userEmail: UILabel!
+    @IBOutlet weak var userNumber: UILabel!
+    @IBOutlet weak var userWebsite: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        self.postID = post!.id
         getComments(postid: post!.id)
+        getAuthor(userid: post!.userId)
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
@@ -79,6 +147,31 @@ class PostDetailViewController: UIViewController, UITableViewDataSource, UITable
             self.loading = false
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+            }
+        }.resume()
+    }
+    
+    private func getAuthor(userid: Int) {
+        guard let  url = URL(string: "https://jsonplaceholder.typicode.com/users?id=\(userid)") else {
+            fatalError("URL guard statement failed")
+        }
+        URLSession.shared.dataTask(with: url) { (data,response,error) in
+            //Handling decoding
+            if let data = data {
+                print(userid)
+                guard let author = try? JSONDecoder().decode([Author].self, from: data) else {
+                    fatalError("Error decoding data \(String(describing: error))")
+                }
+                self.authorsArray = author
+            }
+            self.loading = false
+            
+
+            DispatchQueue.main.async {
+                self.userRealName.text = self.authorsArray.first?.name
+                self.userEmail.text = self.authorsArray.first?.email
+                self.userNumber.text = self.authorsArray.first?.phone
+                self.userWebsite.text = self.authorsArray.first?.website
             }
         }.resume()
     }

@@ -107,6 +107,7 @@
 		2D611ECB2912046800A79B48 /* Zemoga */ = {
 			isa = PBXGroup;
 			children = (
+				2DDA3BA02918D95400E8FDDA /* Models */,
 				2D611ECC2912046800A79B48 /* AppDelegate.swift */,
 				2D611ECE2912046800A79B48 /* SceneDelegate.swift */,
 				2D611ED02912046800A79B48 /* ViewController.swift */,
@@ -137,6 +138,13 @@
 				2D611EEF2912047000A79B48 /* ZemogaUITestsLaunchTests.swift */,
 			);
 			path = ZemogaUITests;
+			sourceTree = "<group>";
+		};
+		2DDA3BA02918D95400E8FDDA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
